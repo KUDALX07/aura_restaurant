@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAL Restaurant — Меню</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="logo">ADAL<span>.</span></a>
+            <nav class="nav" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="index.html" class="nav__link">Главная</a></li>
+                    <li><a href="menu.html" class="nav__link active">Меню</a></li>
+                    <li><a href="contacts.html" class="nav__link">Контакты и Поддержка</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button class="btn btn--outline" id="open-auth-btn">Войти</button>
+                <button class="cart-btn" id="open-cart-btn" aria-label="Корзина">
+                    🛒 <span class="cart-btn__badge" id="cart-count">0</span>
+                </button>
+                <button class="burger" id="burger-btn" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-padding">
+        <h1 class="page-title">Наше Меню</h1>
+
+        <!-- Панель управления: Поиск, Фильтры и Сортировка -->
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Поиск блюда по названию..." autocomplete="off">
+            </div>
+
+            <div class="categories" id="category-filters">
+                <button class="category-btn active" data-category="all">Все</button>
+                <button class="category-btn" data-category="mains">Горячее</button>
+                <button class="category-btn" data-category="starters">Закуски</button>
+                <button class="category-btn" data-category="desserts">Десерты</button>
+                <button class="category-btn" data-category="drinks">Напитки</button>
+            </div>
+
+            <div class="sort-box">
+                <select id="sort-select">
+                    <option value="default">Сортировка: По умолчанию</option>
+                    <option value="price-low">Сначала дешевле</option>
+                    <option value="price-high">Сначала дороже</option>
+                    <option value="rating">По рейтингу</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div class="grid grid--catalog" id="dishes-grid">
+            <!-- Блюда генерируются через JS -->
+        </div>
+    </main>
+
+    <!-- Модальное окно информации о блюде -->
+    <div class="modal" id="dish-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-dish-btn">&times;</button>
+            <div id="dish-detail-body">
+                <!-- Заполняется динамически при клике -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Общие модальные окна (Auth & Cart) -->
+    <div class="modal" id="auth-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-auth-btn">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login-btn">Вход</button>
+                <button class="auth-tab" id="tab-register-btn">Регистрация</button>
+            </div>
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="example@mail.com" required>
+                    <span class="error-msg" id="login-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="login-pass">Пароль</label>
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                    <span class="error-msg" id="login-pass-error"></span>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Войти</button>
+            </form>
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="reg-name">Имя</label>
+                    <input type="text" id="reg-name" placeholder="Али" required>
+                    <span class="error-msg" id="reg-name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" placeholder="example@mail.com" required>
+                    <span class="error-msg" id="reg-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="reg-pass">Пароль</label>
+                    <input type="password" id="reg-pass" placeholder="••••••••" required>
+                    <span class="error-msg" id="reg-pass-error"></span>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+            </form>
+            <div id="auth-status-msg" class="status-msg"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="cart-modal">
+        <div class="modal__content modal__content--wide">
+            <button class="modal__close" id="close-cart-btn">&times;</button>
+            <h2>Ваша Корзина</h2>
+            <div id="cart-items-list" class="cart-items"></div>
+            <div class="cart-summary">
+                <span>Итого:</span>
+                <strong id="cart-total-price">0 ₸</strong>
+            </div>
+            <button class="btn btn--primary btn--full" id="checkout-btn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>&copy; 2026 ADAL Restaurant. Все права не защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

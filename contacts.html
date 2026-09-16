@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAL Restaurant — Контакты и Поддержка</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="logo">ADAL<span>.</span></a>
+            <nav class="nav" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="index.html" class="nav__link">Главная</a></li>
+                    <li><a href="menu.html" class="nav__link">Меню</a></li>
+                    <li><a href="contacts.html" class="nav__link active">Контакты и Поддержка</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button class="btn btn--outline" id="open-auth-btn">Войти</button>
+                <button class="cart-btn" id="open-cart-btn" aria-label="Корзина">
+                    🛒 <span class="cart-btn__badge" id="cart-count">0</span>
+                </button>
+                <button class="burger" id="burger-btn" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-padding">
+        <h1 class="page-title">Контакты и Служба Поддержки</h1>
+
+        <div class="grid grid--2">
+            <!-- Информационный блок -->
+            <div class="contact-info">
+                <h2>Наш Ресторан</h2>
+                <p>Мы всегда рады предложить вам исключительное обслуживание и вкусные блюда.</p>
+                
+                <div class="info-item">
+                    <strong>📍 Адрес:</strong>
+                    <span>г. Алматы, пр. Абая, 150</span>
+                </div>
+                <div class="info-item">
+                    <strong>📞 Телефон:</strong>
+                    <span>+7 (777) 123-45-67</span>
+                </div>
+                <div class="info-item">
+                    <strong>✉️ Email:</strong>
+                    <span>support@aura-restaurant.kz</span>
+                </div>
+                <div class="info-item">
+                    <strong>🕒 Часы работы:</strong>
+                    <span>Пн-Вс: 11:00 — 23:00</span>
+                </div>
+            </div>
+
+            <!-- Форма обратной связи / Валидация JS -->
+            <div class="card contact-form-card">
+                <h2>Написать нам</h2>
+                <form id="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="contact-name">Ваше имя *</label>
+                        <input type="text" id="contact-name" placeholder="Введите имя">
+                        <span class="error-msg" id="contact-name-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email">Ваш Email *</label>
+                        <input type="email" id="contact-email" placeholder="example@mail.com">
+                        <span class="error-msg" id="contact-email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-phone">Телефон *</label>
+                        <input type="tel" id="contact-phone" placeholder="+77001234567">
+                        <span class="error-msg" id="contact-phone-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-topic">Тема обращения</label>
+                        <select id="contact-topic">
+                            <option value="general">Общий вопрос</option>
+                            <option value="booking">Бронирование стола</option>
+                            <option value="feedback">Отзыв / Поддержка</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Сообщение *</label>
+                        <textarea id="contact-message" rows="4" placeholder="Напишите ваше сообщение..."></textarea>
+                        <span class="error-msg" id="contact-message-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--full">Отправить сообщение</button>
+                    <div id="contact-success-msg" class="status-msg"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Общие модалки -->
+    <div class="modal" id="auth-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-auth-btn">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login-btn">Вход</button>
+                <button class="auth-tab" id="tab-register-btn">Регистрация</button>
+            </div>
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="example@mail.com" required>
+                    <span class="error-msg" id="login-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="login-pass">Пароль</label>
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                    <span class="error-msg" id="login-pass-error"></span>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Войти</button>
+            </form>
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="reg-name">Имя</label>
+                    <input type="text" id="reg-name" placeholder="Али" required>
+                    <span class="error-msg" id="reg-name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" placeholder="example@mail.com" required>
+                    <span class="error-msg" id="reg-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="reg-pass">Пароль</label>
+                    <input type="password" id="reg-pass" placeholder="••••••••" required>
+                    <span class="error-msg" id="reg-pass-error"></span>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+            </form>
+            <div id="auth-status-msg" class="status-msg"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="cart-modal">
+        <div class="modal__content modal__content--wide">
+            <button class="modal__close" id="close-cart-btn">&times;</button>
+            <h2>Ваша Корзина</h2>
+            <div id="cart-items-list" class="cart-items"></div>
+            <div class="cart-summary">
+                <span>Итого:</span>
+                <strong id="cart-total-price">0 ₸</strong>
+            </div>
+            <button class="btn btn--primary btn--full" id="checkout-btn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>&copy; 2026 ADAL Restaurant. Все права не защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
